@@ -7,11 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class UserModel {
+public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
@@ -38,7 +37,7 @@ public class UserModel {
 	@Column(nullable = false, length =20)
 	private String phoneNumber;
 	
-	@Column(nullable = false, length =30)
+	@Column(length =30)
 	private String aka;
 
 	public Long getId() {
