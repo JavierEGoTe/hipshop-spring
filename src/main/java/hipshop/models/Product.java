@@ -16,7 +16,15 @@ import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.MetaValue;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 @Entity
 public class Product {
 
@@ -33,16 +41,19 @@ public class Product {
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	@JoinColumn(name = "productId")
 	private ProductType product;
+	@ManyToOne
+	@JsonBackReference
+	private Vendor vendor;
 
 
 	public Product() {
 
 	}
 
-	public Product(final ProductType product) {
+	public Product(ProductType product, Vendor vendor) {
 		this.product = product;
+		this.vendor = vendor;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -60,6 +71,16 @@ public class Product {
 		this.product = product;
 	}
 
+	public Vendor getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
 
 
+
+	
+	
 }
