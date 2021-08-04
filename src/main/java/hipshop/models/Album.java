@@ -1,10 +1,12 @@
 package hipshop.models;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +25,8 @@ public class Album implements ProductType {
 	@SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", initialValue = 1, allocationSize = 1)
 	private Long id;
 	private String productName;
-	private Float price;
+	@Column(precision = 8, scale = 2, nullable = false)
+	private BigDecimal price;
 	private String image;
 	
 	@OneToMany(mappedBy="album")
@@ -33,13 +36,13 @@ public class Album implements ProductType {
 	public Album() {
 	}
 
-	public Album(String productName, Float price) {
+	public Album(String productName, BigDecimal price) {
 		this.productName = productName;
 		this.price = price;
 	}
 	
 
-	public Album(Long id, String productName, Float price, String image, List<Song> songs) {
+	public Album(Long id, String productName, BigDecimal price, String image, List<Song> songs) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -72,11 +75,11 @@ public class Album implements ProductType {
 		this.image = image;
 	}
 
-	public Float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

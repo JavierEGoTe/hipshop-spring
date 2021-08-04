@@ -1,5 +1,7 @@
 package hipshop;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -47,16 +49,17 @@ public class HipSHopApplication implements CommandLineRunner{
 	private PurchaseOrderRepository purchaseOrderRepository;
 	@Autowired
 	private PurchaseOrderItemRepository purchaseOrderItemRepository;
-
+	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Starting...");
 		
-		Album album1 = new Album("First name album", 1.1f);
+		BigDecimal precio = new BigDecimal("010100");
+		Album album1 = new Album("First name album",precio);
 		
-		Clothing clothe1 = new Clothing("First name Cloth", 1.1f);
+		Clothing clothe1 = new Clothing("First name Cloth",precio);
 		
-		Service service1 = new Service("First name service", 1.1f);
+		Service service1 = new Service("First name service", precio);
 		
 		Song song1 = new Song("Song 1", album1);
 		Song song2 = new Song("Song 2", album1);
@@ -96,8 +99,8 @@ public class HipSHopApplication implements CommandLineRunner{
 		
 		PurchaseOrder purchase1 = new PurchaseOrder(10f, user1);
 		
-		PurchaseOrderItem item1 = new PurchaseOrderItem(purchase1, product1, 10f);
-		PurchaseOrderItem item2 = new PurchaseOrderItem(purchase1, product2, 10f);
+		PurchaseOrderItem item1 = new PurchaseOrderItem(purchase1, product1, precio);
+		PurchaseOrderItem item2 = new PurchaseOrderItem(purchase1, product2, precio);
 		
 		purchaseOrderRepository.save(purchase1);
 		purchaseOrderItemRepository.save(item1);

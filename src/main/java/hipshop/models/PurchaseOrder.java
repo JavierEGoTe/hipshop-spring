@@ -3,6 +3,7 @@ package hipshop.models;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,18 +29,28 @@ public class PurchaseOrder {
 	@JsonManagedReference
 	private List<PurchaseOrderItem> purchaseOrderItem;
 	
+	@Column(nullable = false, length = 150)
+	private String address;
 	
+	@Column(nullable = false, length = 100)
+	private String guideNumber; 
+	
+	@Column (nullable = false)
+	private String packageStatus;
 	
 
 	public PurchaseOrder() {
 	}
-	
-	
 
-	public PurchaseOrder(Float total, User user) {
+	public PurchaseOrder(Float total, User user, List<PurchaseOrderItem> purchaseOrderItem, String address) {
+		super();
 		this.total = total;
 		this.user = user;
+		this.purchaseOrderItem = purchaseOrderItem;
+		this.address = address;
 	}
+
+
 
 
 
@@ -77,6 +88,42 @@ public class PurchaseOrder {
 
 	public void setPurchaseOrderItem(List<PurchaseOrderItem> purchaseOrderItem) {
 		this.purchaseOrderItem = purchaseOrderItem;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+	public String getGuideNumber() {
+		return guideNumber;
+	}
+
+
+
+	public void setGuideNumber(String guideNumber) {
+		this.guideNumber = guideNumber;
+	}
+
+
+
+	public String getPackageStatus() {
+		return packageStatus;
+	}
+
+
+
+	public void setPackageStatus(String packageStatus) {
+		this.packageStatus = packageStatus;
 	}
 
 
