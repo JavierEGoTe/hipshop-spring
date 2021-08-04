@@ -54,57 +54,7 @@ public class HipSHopApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		System.out.println("Starting...");
 		
-		BigDecimal precio = new BigDecimal("010100");
-		Album album1 = new Album("First name album",precio);
 		
-		Clothing clothe1 = new Clothing("First name Cloth",precio);
-		
-		Service service1 = new Service("First name service", precio);
-		
-		Song song1 = new Song("Song 1", album1);
-		Song song2 = new Song("Song 2", album1);
-		Song song3 = new Song("Song 3", album1);
-		
-		
-		Vendor vendor1 = new Vendor("First Vendor");
-		Vendor vendor2 = new Vendor("second Vendor");
-		
-		vendorRepository.save(vendor1);
-		vendorRepository.save(vendor2);
-		
-		Product product1 = new Product(album1, vendor1);
-		Product product2 = new Product(clothe1, vendor2);
-		Product product3 = new Product(service1, vendor1);
-		productRepository.save(product1);
-		productRepository.save(product2);
-		productRepository.save(product3);
-		
-		songRepository.save(song1);
-		songRepository.save(song2);
-		songRepository.save(song3);
-		
-		
-		
-		User user1 = new User("first user name");
-		User user2 = new User("first user name");
-		
-		userRepository.save(user1);
-		userRepository.save(user2);
-		
-		Card card1 = new Card(user1, "first user card");
-		Card card2 = new Card(user2, "second user card");
-		
-		cardRepository.save(card1);
-		cardRepository.save(card2);
-		
-		PurchaseOrder purchase1 = new PurchaseOrder(10f, user1);
-		
-		PurchaseOrderItem item1 = new PurchaseOrderItem(purchase1, product1, precio);
-		PurchaseOrderItem item2 = new PurchaseOrderItem(purchase1, product2, precio);
-		
-		purchaseOrderRepository.save(purchase1);
-		purchaseOrderItemRepository.save(item1);
-		purchaseOrderItemRepository.save(item2);
 		
 	}
 
