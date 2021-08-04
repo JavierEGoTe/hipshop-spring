@@ -1,4 +1,4 @@
-package hipshop.service;
+package hipshop.services;
 
 import java.util.ArrayList;
 import java.util.Date;
