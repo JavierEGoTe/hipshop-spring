@@ -32,10 +32,10 @@ public class User {
 	@Column( length =100)
 	private String address;
 	
-	@Column(length =50)
+	@Column(nullable = false, length =50)
 	private String email;
 	
-	@Column(length =250)
+	@Column(nullable = false, length =250)
 	private String password;
 	
 	@Column(length =20)
@@ -52,10 +52,22 @@ public class User {
 
 	public User() {
 	}
-	
-	public User(String firstName) {
+
+	public User(String firstName, String lastName, Date dateBirth, String address, String email, String password,
+			String phoneNumber, String aka, List<Card> cards) {
+		super();
 		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateBirth = dateBirth;
+		this.address = address;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.aka = aka;
+		this.cards = cards;
 	}
+
+
 
 	public Long getId() {
 		return id;

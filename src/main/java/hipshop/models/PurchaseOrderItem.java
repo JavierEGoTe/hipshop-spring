@@ -2,6 +2,7 @@ package hipshop.models;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,10 @@ public class PurchaseOrderItem {
 	@OneToOne
 	private Product productId;
 	
-	private Float price;
+	@Column(nullable = false)
+	private BigDecimal price;
+	
+	private Integer quantity;
 	
 	
 	public PurchaseOrderItem() {
@@ -34,7 +38,7 @@ public class PurchaseOrderItem {
 	
 	
 
-	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, Float price) {
+	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, BigDecimal price) {
 		this.orderId = orderId;
 		this.productId = productId;
 		this.price = price;
@@ -66,12 +70,24 @@ public class PurchaseOrderItem {
 		this.productId = productId;
 	}
 
-	public Float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	

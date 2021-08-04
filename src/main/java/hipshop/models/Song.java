@@ -1,5 +1,6 @@
 package hipshop.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,13 @@ public class Song {
 	@ManyToOne
 	@JsonBackReference
 	private Album album;
+	
+	@Column(nullable = false)
+	private Integer songNumber;
+	
+	private String duration;
+	
+	private String path;
 	
 
 	public Song() {
@@ -52,6 +60,30 @@ public class Song {
 
 	public void setAlbum(Album album) {
 		this.album = album;
+	}
+
+	public Integer getSongNumber() {
+		return songNumber;
+	}
+
+	public void setSongNumber(Integer songNumber) {
+		this.songNumber = songNumber;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 	
 	
