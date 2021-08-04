@@ -41,13 +41,16 @@ public class PurchaseOrder {
 
 	public PurchaseOrder() {
 	}
-	
-	
 
-	public PurchaseOrder(Float total, User user) {
+	public PurchaseOrder(Float total, User user, List<PurchaseOrderItem> purchaseOrderItem, String address) {
+		super();
 		this.total = total;
 		this.user = user;
+		this.purchaseOrderItem = purchaseOrderItem;
+		this.address = address;
 	}
+
+
 
 
 

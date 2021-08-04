@@ -30,18 +30,18 @@ public class PurchaseOrderItem {
 	@Column(nullable = false)
 	private BigDecimal price;
 	
+	@Column(nullable = false)
 	private Integer quantity;
 	
 	
 	public PurchaseOrderItem() {
 	}
-	
-	
 
-	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, BigDecimal price) {
+	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, BigDecimal price,Integer quantity) {
 		this.orderId = orderId;
 		this.productId = productId;
 		this.price = price;
+		this.quantity = quantity;
 	}
 
 
@@ -78,13 +78,9 @@ public class PurchaseOrderItem {
 		this.price = price;
 	}
 
-
-
 	public Integer getQuantity() {
 		return quantity;
 	}
-
-
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
