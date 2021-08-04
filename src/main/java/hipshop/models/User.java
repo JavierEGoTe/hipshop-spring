@@ -1,17 +1,20 @@
 package hipshop.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "user")
-public class UserModel {
+public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
@@ -23,23 +26,36 @@ public class UserModel {
 	@Column(length =100)
 	private String lastName;
 	
-	@Column(nullable = false)
+	
 	private Date dateBirth;
 	
 	@Column( length =100)
 	private String address;
 	
-	@Column(nullable = false, length =50)
+	@Column(length =50)
 	private String email;
 	
-	@Column(nullable = false, length =250)
+	@Column(length =250)
 	private String password;
 	
-	@Column(nullable = false, length =20)
+	@Column(length =20)
 	private String phoneNumber;
 	
-	@Column(nullable = false, length =30)
+	@Column(length =30)
 	private String aka;
+	
+	@OneToMany(mappedBy="user")
+	@JsonManagedReference
+	private List<Card> cards;
+	
+	
+
+	public User() {
+	}
+	
+	public User(String firstName) {
+		this.firstName = firstName;
+	}
 
 	public Long getId() {
 		return id;
@@ -112,4 +128,13 @@ public class UserModel {
 	public void setAka(String aka) {
 		this.aka = aka;
 	}
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+	
 }
