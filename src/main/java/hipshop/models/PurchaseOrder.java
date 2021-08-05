@@ -23,7 +23,7 @@ public class PurchaseOrder {
 	private Float total;
 	
 	@ManyToOne
-	private User user;
+	private Member user;
 	
 	@OneToMany(mappedBy="orderId")
 	@JsonManagedReference
@@ -42,7 +42,7 @@ public class PurchaseOrder {
 	public PurchaseOrder() {
 	}
 
-	public PurchaseOrder(Float total, User user, List<PurchaseOrderItem> purchaseOrderItem, String address) {
+	public PurchaseOrder(Float total, Member user, List<PurchaseOrderItem> purchaseOrderItem, String address) {
 		super();
 		this.total = total;
 		this.user = user;
@@ -70,11 +70,11 @@ public class PurchaseOrder {
 		this.total = total;
 	}
 
-	public User getUser() {
+	public Member getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Member user) {
 		this.user = user;
 	}
 

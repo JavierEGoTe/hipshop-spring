@@ -15,7 +15,7 @@ import hipshop.models.PurchaseOrder;
 import hipshop.models.PurchaseOrderItem;
 import hipshop.models.Service;
 import hipshop.models.Song;
-import hipshop.models.User;
+import hipshop.models.Member;
 import hipshop.models.Vendor;
 import hipshop.repositories.AlbumRepository;
 import hipshop.repositories.ClothingRepository;
@@ -85,8 +85,8 @@ public class HipSHopApplication implements CommandLineRunner{
 		
 		
 		
-		User user1 = new User("first user name");
-		User user2 = new User("first user name");
+		Member user1 = new Member("first user name");
+		Member user2 = new Member("first user name");
 		
 		userRepository.save(user1);
 		userRepository.save(user2);

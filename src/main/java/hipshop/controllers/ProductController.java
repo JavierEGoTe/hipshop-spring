@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hipshop.models.Product;
 import hipshop.models.PurchaseOrder;
-import hipshop.models.User;
+import hipshop.models.Member;
 import hipshop.models.Vendor;
 import hipshop.models.Album;
 import hipshop.repositories.AlbumRepository;
@@ -50,9 +50,9 @@ public class ProductController {
 	}
 	
 	@GetMapping("/users")
-	public ArrayList<User> getUsers(){
+	public ArrayList<Member> getUsers(){
 		System.out.println("Getting Users ");
-		return (ArrayList<User>) userRepository.findAll();
+		return (ArrayList<Member>) userRepository.findAll();
 	}
 	
 	@GetMapping("/orders")
