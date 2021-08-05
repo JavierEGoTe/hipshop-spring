@@ -32,7 +32,6 @@ public class MemberService {
 		String password = user.getPassword();
 		String phoneNumber = user.getPhoneNumber();
 		String aka = user.getAka();
-		List <Card> cards = user.getCards();
 		
 		if(email != null && password != null) {
 			return memberRepository.save(user);
@@ -52,6 +51,6 @@ public class MemberService {
 		}
 	}
 	public ArrayList<Member> getUserByName(String firstName){
-		return memberRepository.findByName(firstName);
+		return memberRepository.findByFirstName(firstName);
 	}
 }

@@ -10,18 +10,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import hipshop.models.Album;
 import hipshop.models.Card;
 import hipshop.models.Clothing;
+import hipshop.models.Favorite;
+import hipshop.models.Following;
 import hipshop.models.Product;
 import hipshop.models.PurchaseOrder;
 import hipshop.models.PurchaseOrderItem;
-import hipshop.models.Service;
+import hipshop.models.Workshop;
 import hipshop.models.Song;
 import hipshop.models.Member;
 import hipshop.models.Vendor;
 import hipshop.repositories.AlbumRepository;
 import hipshop.repositories.ClothingRepository;
+import hipshop.repositories.FavoriteRepository;
+import hipshop.repositories.FollowingRepository;
 import hipshop.repositories.ProductRepository;
 import hipshop.repositories.PurchaseOrderRepository;
-import hipshop.repositories.ServiceRepository;
+import hipshop.repositories.WorkshopRepository;
 import hipshop.repositories.SongRepository;
 import hipshop.repositories.MemberRepository;
 import hipshop.repositories.VendorRepository;
@@ -49,15 +53,22 @@ public class HipSHopApplication implements CommandLineRunner{
 	private PurchaseOrderRepository purchaseOrderRepository;
 	@Autowired
 	private PurchaseOrderItemRepository purchaseOrderItemRepository;
+	@Autowired
+	private FollowingRepository followingRepository;
+	@Autowired
+	private FavoriteRepository favoriteRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Starting...");
 		
+		BigDecimal precio = new BigDecimal("10");
+		
+		Album album1 = new Album("First name album", precio);
 		
 		Clothing clothe1 = new Clothing("First name Cloth",precio);
 		
-		Service service1 = new Service("First name service", precio);
+		Workshop service1 = new Workshop("First name service", precio);
 		
 		Song song1 = new Song("Song 1", album1);
 		Song song2 = new Song("Song 2", album1);
@@ -84,7 +95,7 @@ public class HipSHopApplication implements CommandLineRunner{
 		
 		
 		Member user1 = new Member("first user name");
-		Member user2 = new Member("first user name");
+		Member user2 = new Member("second user name");
 		
 		userRepository.save(user1);
 		userRepository.save(user2);
@@ -104,6 +115,25 @@ public class HipSHopApplication implements CommandLineRunner{
 		purchaseOrderItemRepository.save(item1);
 		purchaseOrderItemRepository.save(item2);
 		
+		Following follow1 = new Following(vendor1, user1);
+		Following follow2 = new Following(vendor1, user2);
+		Following follow3 = new Following(vendor2, user1);
+		followingRepository.save(follow1);
+		followingRepository.save(follow2);
+		followingRepository.save(follow3);
+		
+		Favorite favorite1 = new Favorite(product1, user1);
+		Favorite favorite2 = new Favorite(product2, user1);
+		Favorite favorite3 = new Favorite(product3, user1);
+		Favorite favorite4 = new Favorite(product1, user2);
+		Favorite favorite5 = new Favorite(product2, user2);
+		Favorite favorite6 = new Favorite(product3, user2);
+		favoriteRepository.save(favorite1);
+		favoriteRepository.save(favorite2);
+		favoriteRepository.save(favorite3);
+		favoriteRepository.save(favorite4);
+		favoriteRepository.save(favorite5);
+		favoriteRepository.save(favorite6);
 	}
 
 }

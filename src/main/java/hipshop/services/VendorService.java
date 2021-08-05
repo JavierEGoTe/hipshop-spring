@@ -57,6 +57,6 @@ public class VendorService {
 		}
 	}
 	public ArrayList<Vendor> getUsersByFirstName(String firstname){
-		return vendorRepository.findByName(firstname);
+		return vendorRepository.findByFirstName(firstname);
 	}
 }

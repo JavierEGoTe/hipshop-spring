@@ -29,18 +29,27 @@ public class PurchaseOrder {
 	@JsonManagedReference
 	private List<PurchaseOrderItem> purchaseOrderItem;
 	
-	@Column(nullable = false, length = 150)
+	@Column(length = 150)
 	private String address;
 	
-	@Column(nullable = false, length = 100)
+	@Column(length = 100)
 	private String guideNumber; 
 	
-	@Column (nullable = false)
 	private String packageStatus;
 	
 
 	public PurchaseOrder() {
 	}
+	
+	
+
+	public PurchaseOrder(Float total, Member user) {
+		super();
+		this.total = total;
+		this.user = user;
+	}
+
+
 
 	public PurchaseOrder(Float total, Member user, List<PurchaseOrderItem> purchaseOrderItem, String address) {
 		super();

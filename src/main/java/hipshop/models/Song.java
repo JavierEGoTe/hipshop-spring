@@ -22,7 +22,6 @@ public class Song {
 	@JsonBackReference
 	private Album album;
 	
-	@Column(nullable = false)
 	private Integer songNumber;
 	
 	private String duration;

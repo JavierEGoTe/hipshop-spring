@@ -37,7 +37,7 @@ public class Product {
 	@AnyMetaDef(idType = "long", metaType = "string", metaValues = {
 			@MetaValue(targetEntity = Album.class, value = "album"),
 			@MetaValue(targetEntity = Clothing.class, value = "clothing"),
-			@MetaValue(targetEntity = Service.class, value = "service") })
+			@MetaValue(targetEntity = Workshop.class, value = "workshop") })
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	@JoinColumn(name = "productId")
 	private ProductType product;

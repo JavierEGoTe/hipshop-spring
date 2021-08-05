@@ -13,24 +13,25 @@ import javax.persistence.SequenceGenerator;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 @Entity
-public class Service implements ProductType{
+public class Workshop implements ProductType{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
 	@SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", initialValue = 1, allocationSize = 1)
 	private Long id;
+	
 	private String name;
-	@Column(nullable = false)
+
 	private BigDecimal price;
 	
 	private DateTimeAtCompleted date;
 	
 	private String location;
 
-	public Service() {
+	public Workshop() {
 	}
 
-	public Service(final String name,final BigDecimal price) {
+	public Workshop(final String name,final BigDecimal price) {
 		this.name = name;
 		this.price = price;
 	}
