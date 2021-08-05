@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class User {
+public class Member {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,10 +50,10 @@ public class User {
 	
 	
 
-	public User() {
+	public Member() {
 	}
 
-	public User(String firstName, String lastName, Date dateBirth, String address, String email, String password,
+	public Member(String firstName, String lastName, Date dateBirth, String address, String email, String password,
 			String phoneNumber, String aka, List<Card> cards) {
 		super();
 		this.firstName = firstName;

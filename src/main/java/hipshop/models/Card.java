@@ -18,7 +18,7 @@ public class Card {
 	
 	@ManyToOne
 	@JsonBackReference
-	private User user;
+	private Member user;
 	
 	private String holder;
 	
@@ -33,7 +33,7 @@ public class Card {
 	public Card() {
 	}
 
-	public Card(User user, String holder, Integer cardNumber, Integer cvv, String expirationDate) {
+	public Card(Member user, String holder, Integer cardNumber, Integer cvv, String expirationDate) {
 		super();
 		this.user = user;
 		this.holder = holder;
@@ -52,11 +52,11 @@ public class Card {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public Member getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Member user) {
 		this.user = user;
 	}
 
