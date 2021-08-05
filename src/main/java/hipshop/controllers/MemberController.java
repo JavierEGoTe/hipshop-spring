@@ -13,32 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import hipshop.models.User;
-import hipshop.services.UserService;
+import hipshop.models.Member;
+import hipshop.services.MemberService;
 
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class MemberController {
 
 	@Autowired
-	UserService userService;
+	MemberService memberService;
 	
 	@GetMapping
-	public ArrayList<User> getUsers(){
-		return userService.getUsers();
+	public ArrayList<Member> getUsers(){
+		return memberService.getUsers();
 	}
 	@PostMapping
-	public User saveUser(@RequestBody User user) {
-			return userService.saveUser(user);
+	public Member saveUser(@RequestBody Member user) {
+			return memberService.saveUser(user);
 	}
 	@GetMapping(path = "/{id}")
-	public Optional<User> getUserById(@PathVariable("id") Long id){
-		return userService.getUserById(id);
+	public Optional<Member> getUserById(@PathVariable("id") Long id){
+		return memberService.getUserById(id);
 	}
 	@DeleteMapping(path = "/{id}")
 	public String deleteUser(@PathVariable("id")Long id) {
-		boolean ok = userService.deleteUser(id);
+		boolean ok = memberService.deleteUser(id);
 		if(ok) {
 			return "Se eliminó el usuario";
 		}else {
@@ -47,8 +47,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/query")
-	public ArrayList<User> getUsersByName(@RequestParam(value = "name", defaultValue="")String name){
-		return userService.getUserByName(name); 
+	public ArrayList<Member> getUsersByName(@RequestParam(value = "name", defaultValue="")String name){
+		return memberService.getUserByName(name); 
 	}
 	
 }

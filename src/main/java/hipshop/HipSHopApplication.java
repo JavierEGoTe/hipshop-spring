@@ -23,7 +23,7 @@ import hipshop.repositories.ProductRepository;
 import hipshop.repositories.PurchaseOrderRepository;
 import hipshop.repositories.ServiceRepository;
 import hipshop.repositories.SongRepository;
-import hipshop.repositories.UserRepository;
+import hipshop.repositories.MemberRepository;
 import hipshop.repositories.VendorRepository;
 import hipshop.repositories.CardRepository;
 import hipshop.repositories.PurchaseOrderItemRepository;
@@ -42,7 +42,7 @@ public class HipSHopApplication implements CommandLineRunner{
 	@Autowired
 	private VendorRepository vendorRepository;
 	@Autowired
-	private UserRepository userRepository;
+	private MemberRepository userRepository;
 	@Autowired
 	private CardRepository cardRepository;
 	@Autowired

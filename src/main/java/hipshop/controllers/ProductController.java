@@ -17,7 +17,7 @@ import hipshop.models.Vendor;
 import hipshop.models.Album;
 import hipshop.repositories.AlbumRepository;
 import hipshop.repositories.ProductRepository;
-import hipshop.repositories.UserRepository;
+import hipshop.repositories.MemberRepository;
 import hipshop.repositories.VendorRepository;
 import hipshop.repositories.PurchaseOrderRepository;
 
@@ -31,7 +31,7 @@ public class ProductController {
 	@Autowired
 	VendorRepository vendorRepository;
 	@Autowired
-	UserRepository userRepository;
+	MemberRepository userRepository;
 	@Autowired
 	PurchaseOrderRepository purchaseOrderRepository;
 	

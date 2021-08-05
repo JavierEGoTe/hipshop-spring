@@ -9,21 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hipshop.models.Card;
-import hipshop.models.User;
-import hipshop.repositories.UserRepository;
+import hipshop.models.Member;
+import hipshop.repositories.MemberRepository;
 
 
 
 @Service
-public class UserService {
+public class MemberService {
 	
 	@Autowired
-	UserRepository userRepository;
+	MemberRepository memberRepository;
 	
-	public ArrayList<User> getUsers(){
-		return (ArrayList<User>) userRepository.findAll();
+	public ArrayList<Member> getUsers(){
+		return (ArrayList<Member>) memberRepository.findAll();
 	}
-	public User saveUser(User user) {
+	public Member saveUser(Member user) {
 		String firstName = user.getFirstName();
 		String lastName = user.getLastName();
 		Date dateBirth = user.getDateBirth();
@@ -35,23 +35,23 @@ public class UserService {
 		List <Card> cards = user.getCards();
 		
 		if(email != null && password != null) {
-			return userRepository.save(user);
+			return memberRepository.save(user);
 		}
 		
 		return user;
 	}
-	public Optional<User> getUserById(Long id) {
-		return userRepository.findById(id);
+	public Optional<Member> getUserById(Long id) {
+		return memberRepository.findById(id);
 	}
 	public boolean deleteUser(Long id) {
 		try {
-			userRepository.deleteById(id);
+			memberRepository.deleteById(id);
 			return true;
-		}catch(Exception error) {
+		}catch(Exception error){
 			return false;
 		}
 	}
-	public ArrayList<User>getUserByName(String firstName){
-		return userRepository.findByName(firstName);
+	public ArrayList<Member> getUserByName(String firstName){
+		return memberRepository.findByName(firstName);
 	}
 }

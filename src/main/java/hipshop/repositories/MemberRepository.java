@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import hipshop.models.Member;
 
 @Repository
-public interface UserRepository extends CrudRepository<Member,Long>{
-	
+public interface MemberRepository extends CrudRepository<Member,Long>{
+	public abstract ArrayList<Member> findByName(String firstName);
 }
