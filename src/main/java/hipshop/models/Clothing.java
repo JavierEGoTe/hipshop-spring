@@ -15,49 +15,38 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Clothing implements  ProductType{
+public class Clothing implements ProductType{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-	@SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
+
 	private String name;
-	@Column(nullable = false,precision = 8, scale = 2)
+	@Column(precision = 8, scale = 2)
 	private BigDecimal price;
-	@Column(nullable = false)
+
 	private String sku;
-	@Column(nullable = false)
+
 	private String color;
-	@Column(nullable = false)
+
 	private String size;
-	@Column(nullable = false)
+
 	private Integer quantity;
 	private String gender;
-	@Column(nullable = false)
 	private float weigth;
 	
-	@OneToMany(mappedBy="clothingId")
+	@OneToMany(mappedBy="cloth")
 	@JsonManagedReference
 	private List<ClothingImage> clothingImages;
 
 	public Clothing() {
 	}
 
-	public Clothing(String name, BigDecimal price, String sku, String color, String size, Integer quantity,
-			String gender, float weigth, List<ClothingImage> clothingImages) {
+	public Clothing(String name, BigDecimal price) {
 		super();
 		this.name = name;
 		this.price = price;
-		this.sku = sku;
-		this.color = color;
-		this.size = size;
-		this.quantity = quantity;
-		this.gender = gender;
-		this.weigth = weigth;
-		this.clothingImages = clothingImages;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -82,8 +71,6 @@ public class Clothing implements  ProductType{
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	
-	
 
 	public String getSku() {
 		return sku;
@@ -133,9 +120,18 @@ public class Clothing implements  ProductType{
 		this.weigth = weigth;
 	}
 
-	@Override
-	public String getInfoProduct() {
-		return "Name: "+this.getName()+" Price: "+this.getPrice();
+	public List<ClothingImage> getClothingImages() {
+		return clothingImages;
 	}
 
+	public void setClothingImages(List<ClothingImage> clothingImages) {
+		this.clothingImages = clothingImages;
+	}
+	
+	
+	@Override
+	public String getInfoProduct() {
+		return "Name: " + this.getName() + " Price: " + this.getPrice();
+	}
+	
 }

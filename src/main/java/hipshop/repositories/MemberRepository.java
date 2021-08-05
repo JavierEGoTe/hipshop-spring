@@ -9,5 +9,5 @@ import hipshop.models.Member;
 
 @Repository
 public interface MemberRepository extends CrudRepository<Member,Long>{
-	public abstract ArrayList<Member> findByName(String firstName);
+	public abstract ArrayList<Member> findByFirstName(String firstName);
 }

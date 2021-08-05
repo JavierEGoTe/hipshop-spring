@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import hipshop.models.Vendor;
 
 public interface VendorRepository extends CrudRepository<Vendor, Long> {
-	public abstract ArrayList<Vendor> findByName(String firstname);
+	public abstract ArrayList<Vendor> findByFirstName(String firstname);
 }

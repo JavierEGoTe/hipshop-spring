@@ -22,22 +22,26 @@ public class Vendor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String firstName;
-	private String lastName;
-	@Column(nullable = false)
-	private String email;
-	@Column(nullable = false)
-	private String password;
-	private Date dateBirth;
-	private String address;
-	@Column(nullable = false)
-	private String aka;
-	@Column(nullable = false)
-	private Integer bankAccount;
-	@Column(nullable = false)
-	private String bankName;
-	private Integer phoneNumber;
 	
+	private String firstName;
+	
+	private String lastName;
+
+	private String email;
+
+	private String password;
+	
+	private Date dateBirth;
+	
+	private String address;
+
+	private String aka;
+
+	private Integer bankAccount;
+
+	private String bankName;
+	
+	private Integer phoneNumber;
 	
 	
 	@OneToMany(mappedBy="vendor")
@@ -50,6 +54,11 @@ public class Vendor {
 	}
 
 	
+	
+	public Vendor(String firstName) {
+		super();
+		this.firstName = firstName;
+	}
 
 
 
@@ -213,9 +222,9 @@ public class Vendor {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-	
-	
-	
+
+
+
 	
 	
 }

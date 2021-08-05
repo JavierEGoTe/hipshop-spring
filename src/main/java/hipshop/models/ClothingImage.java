@@ -1,54 +1,69 @@
 package hipshop.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class ClothingImage {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-	@SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
-	private String productName;
+	
+	private String imagePath;
 	
 	@ManyToOne
-	@Column(nullable = false)
-	private Integer clothingId;
+	@JsonBackReference
+	private Clothing cloth;
 	
 	
 	public ClothingImage() {
 	}
 
-	public ClothingImage(String productName, Integer clothingId) {
-		this.productName = productName;
-		this.clothingId = clothingId;
+
+	public ClothingImage(String imagePath, Clothing cloth) {
+		super();
+		this.imagePath = imagePath;
+		this.cloth = cloth;
 	}
-	
+
+
 	public Long getId() {
 		return id;
 	}
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getProductName() {
-		return productName;
+
+
+	public String getImagePath() {
+		return imagePath;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
-	public Integer getClothingId() {
-		return clothingId;
+
+
+	public Clothing getCloth() {
+		return cloth;
 	}
-	public void setClothingId(Integer clothingId) {
-		this.clothingId = clothingId;
+
+
+	public void setCloth(Clothing cloth) {
+		this.cloth = cloth;
 	}
+
+
+	
 	
 	
 	

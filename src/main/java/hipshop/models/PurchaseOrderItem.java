@@ -27,15 +27,24 @@ public class PurchaseOrderItem {
 	@OneToOne
 	private Product productId;
 	
-	@Column(nullable = false)
 	private BigDecimal price;
 	
-	@Column(nullable = false)
 	private Integer quantity;
 	
 	
 	public PurchaseOrderItem() {
 	}
+
+	
+	
+	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, BigDecimal price) {
+		super();
+		this.orderId = orderId;
+		this.productId = productId;
+		this.price = price;
+	}
+
+
 
 	public PurchaseOrderItem(PurchaseOrder orderId, Product productId, BigDecimal price,Integer quantity) {
 		this.orderId = orderId;

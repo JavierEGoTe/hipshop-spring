@@ -22,16 +22,27 @@ public class Card {
 	
 	private String holder;
 	
-	@Column(nullable = false, length = 16)
+	@Column( length = 16)
 	private Integer cardNumber;
-	@Column(nullable = false, length = 3)
+	
+	@Column( length = 3)
 	private Integer cvv;
 	
-	@Column(nullable = false, length = 5)
+	@Column(length = 5)
 	private String expirationDate;
 
 	public Card() {
 	}
+	
+	
+
+	public Card(Member user, String holder) {
+		super();
+		this.user = user;
+		this.holder = holder;
+	}
+
+
 
 	public Card(Member user, String holder, Integer cardNumber, Integer cvv, String expirationDate) {
 		super();

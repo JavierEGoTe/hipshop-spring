@@ -17,7 +17,6 @@ public class Member {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false)
 	private Long id;
 	
 	@Column(length =100)
@@ -32,10 +31,10 @@ public class Member {
 	@Column( length =100)
 	private String address;
 	
-	@Column(nullable = false, length =50)
+	@Column( length =50)
 	private String email;
 	
-	@Column(nullable = false, length =250)
+	@Column(length =250)
 	private String password;
 	
 	@Column(length =20)
@@ -48,10 +47,26 @@ public class Member {
 	@JsonManagedReference
 	private List<Card> cards;
 	
+	@OneToMany(mappedBy="vendor")
+	@JsonManagedReference
+	private List<Following> following;
+	
+	@OneToMany(mappedBy="product")
+	@JsonManagedReference
+	private List<Favorite> favorite;
 	
 
 	public Member() {
 	}
+	
+	
+
+	public Member(String firstName) {
+		super();
+		this.firstName = firstName;
+	}
+
+
 
 	public Member(String firstName, String lastName, Date dateBirth, String address, String email, String password,
 			String phoneNumber, String aka, List<Card> cards) {
@@ -148,5 +163,30 @@ public class Member {
 	public void setCards(List<Card> cards) {
 		this.cards = cards;
 	}
+
+
+
+	public List<Following> getFollowing() {
+		return following;
+	}
+
+
+
+	public void setFollowing(List<Following> following) {
+		this.following = following;
+	}
+
+
+
+	public List<Favorite> getFavorite() {
+		return favorite;
+	}
+
+
+
+	public void setFavorite(List<Favorite> favorite) {
+		this.favorite = favorite;
+	}
+	
 	
 }
