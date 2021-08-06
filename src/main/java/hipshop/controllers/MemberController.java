@@ -18,7 +18,7 @@ import hipshop.services.MemberService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
@@ -26,17 +26,17 @@ public class MemberController {
 	
 	@GetMapping
 	public ArrayList<Member> getUsers(){
-		return memberService.getUsers();
+		return memberService.getMembers();
 	}
 	@PostMapping
-	public Member saveUser(@RequestBody Member user) {
-			return memberService.saveUser(user);
+	public Member saveMember(@RequestBody Member user) {
+			return memberService.saveMember(user);
 	}
-	@GetMapping(path = "/{id}")
-	public Optional<Member> getUserById(@PathVariable("id") Long id){
-		return memberService.getUserById(id);
+	@GetMapping(path = "/{idUsuario}")
+	public Optional<Member> getUserById(@PathVariable("idUsuario") Long idVariable){
+		return memberService.getUserById(idVariable);
 	}
-	@DeleteMapping(path = "/{id}")
+	@DeleteMapping(path = "/{idUsuario}")
 	public String deleteUser(@PathVariable("id")Long id) {
 		boolean ok = memberService.deleteUser(id);
 		if(ok) {

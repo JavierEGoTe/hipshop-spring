@@ -24,11 +24,7 @@ public class SongService {
 	}
 	
 	public Song saveSong(Song song) {
-		String songName = song.getSongName();
-		Album album= song.getAlbum();
 		Integer songNumber = song.getSongNumber();
-		String duration = song.getDuration();
-		String path = song.getPath();
 		
 		
 		if(songNumber != null ) {
