@@ -84,8 +84,8 @@ public class Album implements ProductType {
 	}
 
 	@Override
-	public String getInfoProduct() {
-		return "Name: " + this.getProductName() + " Price: " + this.getPrice();
+	public String getType() {
+		return this.getClass().getSimpleName();
 	}
 
 	public List<Song> getSongs() {

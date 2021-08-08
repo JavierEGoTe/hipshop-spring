@@ -1,6 +1,7 @@
 package hipshop;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,6 @@ import hipshop.models.PurchaseOrderItem;
 import hipshop.models.Workshop;
 import hipshop.models.Song;
 import hipshop.models.Member;
-import hipshop.models.Vendor;
 import hipshop.repositories.AlbumRepository;
 import hipshop.repositories.ClothingRepository;
 import hipshop.repositories.FavoriteRepository;
@@ -28,7 +28,6 @@ import hipshop.repositories.PurchaseOrderRepository;
 import hipshop.repositories.WorkshopRepository;
 import hipshop.repositories.SongRepository;
 import hipshop.repositories.MemberRepository;
-import hipshop.repositories.VendorRepository;
 import hipshop.repositories.CardRepository;
 import hipshop.repositories.PurchaseOrderItemRepository;
 
@@ -43,8 +42,6 @@ public class HipSHopApplication implements CommandLineRunner{
 	private ProductRepository productRepository;
 	@Autowired
 	private SongRepository songRepository;
-	@Autowired
-	private VendorRepository vendorRepository;
 	@Autowired
 	private MemberRepository userRepository;
 	@Autowired
@@ -62,7 +59,10 @@ public class HipSHopApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		System.out.println("Starting...");
 		
-		BigDecimal precio = new BigDecimal("10");
+
+		
+		
+		/*BigDecimal precio = new BigDecimal("10");
 		
 		Album album1 = new Album("First name album", precio);
 		
@@ -94,11 +94,7 @@ public class HipSHopApplication implements CommandLineRunner{
 		
 		
 		
-		Member user1 = new Member("first user name");
-		Member user2 = new Member("second user name");
 		
-		userRepository.save(user1);
-		userRepository.save(user2);
 		
 		Card card1 = new Card(user1, "first user card");
 		Card card2 = new Card(user2, "second user card");
@@ -133,7 +129,7 @@ public class HipSHopApplication implements CommandLineRunner{
 		favoriteRepository.save(favorite3);
 		favoriteRepository.save(favorite4);
 		favoriteRepository.save(favorite5);
-		favoriteRepository.save(favorite6);
+		favoriteRepository.save(favorite6);*/
 	}
 
 }

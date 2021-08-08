@@ -78,8 +78,8 @@ public class Workshop implements ProductType{
 	}
 
 	@Override
-	public String getInfoProduct() {
-		return "Name: "+this.getName()+" Price: "+this.getPrice();
+	public String getType() {
+		return this.getClass().getSimpleName();
 	}
 
 }

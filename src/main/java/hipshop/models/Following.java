@@ -19,7 +19,7 @@ public class Following {
 	
 	@ManyToOne
 	@JsonManagedReference
-	private Vendor vendor;
+	private Member vendor;
 
 	@ManyToOne
 	@JsonBackReference
@@ -31,18 +31,18 @@ public class Following {
 	}
 
 
-	public Following(Vendor vendor, Member member) {
+	public Following(Member vendor, Member member) {
 		this.vendor = vendor;
 		this.member = member;
 	}
 
 
-	public Vendor getVendor() {
+	public Member getVendor() {
 		return vendor;
 	}
 
 
-	public void setVendor(Vendor vendor) {
+	public void setVendor(Member vendor) {
 		this.vendor = vendor;
 	}
 
