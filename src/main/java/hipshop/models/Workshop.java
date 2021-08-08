@@ -81,5 +81,6 @@ public class Workshop implements ProductType{
 	public String getInfoProduct() {
 		return "Name: "+this.getName()+" Price: "+this.getPrice();
 	}
+	
 
 }

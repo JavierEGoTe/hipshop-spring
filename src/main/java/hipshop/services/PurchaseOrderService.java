@@ -1,30 +1,27 @@
 package hipshop.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hipshop.models.Member;
 import hipshop.models.PurchaseOrder;
-import hipshop.models.User;
 import hipshop.repositories.PurchaseOrderRepository;
 
 
 @Service
-public class PurcharseOrderService {
+public class PurchaseOrderService {
 
 	@Autowired
 	PurchaseOrderRepository purchaseOrderRepository;
 	
-	public ArrayList<PurchaseOrder> getUsers() {
+	public ArrayList<PurchaseOrder> getPurchaseOrders() {
 		return (ArrayList<PurchaseOrder>) purchaseOrderRepository.findAll();
 	}
 	
 	public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) {
-		Float total = purchaseOrder.getTotal();
-		User user = purchaseOrder.getUser();
 		String address = purchaseOrder.getAddress();
 		String guideNumber = purchaseOrder.getGuideNumber();
 		String packageStatus = purchaseOrder.getPackageStatus();
@@ -41,6 +38,10 @@ public class PurcharseOrderService {
 		return purchaseOrderRepository.findById(id);
 	}
 	
+	public ArrayList<PurchaseOrder> findByName(String name){
+		return purchaseOrderRepository.findByAddress(name);
+	}
+	
 	
 	public boolean deletePurchaseOrder(Long id) {
 		
@@ -52,7 +53,7 @@ public class PurcharseOrderService {
 			return false;
 		}
 	}
-	public ArrayList<PurchaseOrder> getUsersByUser(User user){
-		return purchaseOrderRepository.findByName(user);
+	public ArrayList<PurchaseOrder> getUsersByUser(Member user){
+		return purchaseOrderRepository.findByUser(user);
 	}
 }

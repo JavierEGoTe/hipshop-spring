@@ -20,10 +20,10 @@ public class MemberService {
 	@Autowired
 	MemberRepository memberRepository;
 	
-	public ArrayList<Member> getUsers(){
+	public ArrayList<Member> getMembers(){
 		return (ArrayList<Member>) memberRepository.findAll();
 	}
-	public Member saveUser(Member user) {
+	public Member saveMember(Member user) {
 		String firstName = user.getFirstName();
 		String lastName = user.getLastName();
 		Date dateBirth = user.getDateBirth();
