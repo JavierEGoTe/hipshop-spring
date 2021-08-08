@@ -20,7 +20,7 @@ import hipshop.services.MemberService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/member")
 public class MemberController {
 
 	/*
@@ -50,8 +50,8 @@ public class MemberController {
 	 * Method to get all vendors available 
 	 */
 	@GetMapping
-	public ArrayList<Member> getVendors(){
-		return memberService.getVendors();
+	public ArrayList<Member> getUsers(){
+		return memberService.getMembers();
 	}
 	
 	/*
@@ -61,20 +61,14 @@ public class MemberController {
 	 */
 	
 	@PostMapping
-	public Member saveUser(@RequestBody Member member) {
-		member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
-		return memberService.saveUser(member);
+	public Member saveMember(@RequestBody Member user) {
+			return memberService.saveMember(user);
 	}
-	
-	/*
-	 * Finds members by id
-	 * getUserById(Long id)
-	 */
-	@GetMapping(path = "/{id}")
-	public Optional<Member> getUserById(@PathVariable("id") Long id){
-		return memberService.getUserById(id);
+	@GetMapping(path = "/{idUsuario}")
+	public Optional<Member> getUserById(@PathVariable("idUsuario") Long idVariable){
+		return memberService.getUserById(idVariable);
 	}
-	@DeleteMapping(path = "/{id}")
+	@DeleteMapping(path = "/{idUsuario}")
 	public String deleteUser(@PathVariable("id")Long id) {
 		boolean ok = memberService.deleteUser(id);
 		if(ok) {

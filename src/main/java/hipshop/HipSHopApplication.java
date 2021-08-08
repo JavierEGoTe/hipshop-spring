@@ -14,6 +14,7 @@ import hipshop.models.Clothing;
 import hipshop.models.Favorite;
 import hipshop.models.Following;
 import hipshop.models.Product;
+import hipshop.models.ProductType;
 import hipshop.models.PurchaseOrder;
 import hipshop.models.PurchaseOrderItem;
 import hipshop.models.Workshop;
@@ -55,6 +56,7 @@ public class HipSHopApplication implements CommandLineRunner{
 	@Autowired
 	private FavoriteRepository favoriteRepository;
 	
+	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Starting...");
@@ -70,6 +72,7 @@ public class HipSHopApplication implements CommandLineRunner{
 		
 		Workshop service1 = new Workshop("First name service", precio);
 		
+
 		Song song1 = new Song("Song 1", album1);
 		Song song2 = new Song("Song 2", album1);
 		Song song3 = new Song("Song 3", album1);

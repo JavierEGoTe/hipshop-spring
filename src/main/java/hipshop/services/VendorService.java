@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hipshop.models.Vendor;
+import hipshop.models.Workshop;
 import hipshop.repositories.VendorRepository;
 
 
@@ -17,21 +18,17 @@ public class VendorService {
 	@Autowired
 	VendorRepository vendorRepository;
 	
-	public ArrayList<Vendor> getUsers() {
+	public ArrayList<Vendor> getVendors() {
 		return (ArrayList<Vendor>) vendorRepository.findAll();
 	}
 	
 	public Vendor saveVendor(Vendor vendor) {
-		String firstName = vendor.getFirstName();
-		String lastName = vendor.getLastName();
 		String email = vendor.getEmail();
 		String password = vendor.getPassword();
-		Date dateBirth = vendor.getDateBirth();
-		String address = vendor.getAddress();
 		String aka = vendor.getAka();
 		Integer bankAccount = vendor.getBankAccount();
 		String bankName = vendor.getBankName();
-		Integer phoneNumber = vendor.getPhoneNumber();
+
 		
 		
 		if(email != null && password != null && aka != null && bankAccount != null && bankName != null) {
@@ -45,9 +42,11 @@ public class VendorService {
 		return vendorRepository.findById(id);
 	}
 	
+	public ArrayList<Vendor> getfindByName(String name){
+		return vendorRepository.findByFirstName(name);
+	}
 	
 	public boolean deleteVendor(Long id) {
-		
 		
 		try {
 			vendorRepository.deleteById(id); 
@@ -59,4 +58,5 @@ public class VendorService {
 	public ArrayList<Vendor> getUsersByFirstName(String firstname){
 		return vendorRepository.findByFirstName(firstname);
 	}
+		
 }

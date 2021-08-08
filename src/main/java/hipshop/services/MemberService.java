@@ -30,25 +30,10 @@ public class MemberService implements UserDetailsService {
 	@Autowired
 	MemberRepository memberRepository;
 	
-	public MemberService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-	
-	/*
-	 * Gets all the members available
-	 *  getMembers()
-	 */
-	
 	public ArrayList<Member> getMembers(){
 		return (ArrayList<Member>) memberRepository.findAll();
 	}
-	
-	/*
-	 * Save user and checks in the DB if the username is already 
-	 *  taken
-	 *  saveUser(Member user) 
-	 */
-	public Member saveUser(Member user) {
+	public Member saveMember(Member user) {
 		String firstName = user.getFirstName();
 		String lastName = user.getLastName();
 		Date dateBirth = user.getDateBirth();
