@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import hipshop.models.Product;
 import hipshop.models.PurchaseOrder;
 import hipshop.models.Member;
-import hipshop.models.Vendor;
 import hipshop.models.Album;
 import hipshop.repositories.AlbumRepository;
 import hipshop.repositories.ProductRepository;
 import hipshop.repositories.MemberRepository;
-import hipshop.repositories.VendorRepository;
 import hipshop.repositories.PurchaseOrderRepository;
 
 @RestController
@@ -30,8 +29,6 @@ public class ProductController {
 	ProductRepository productRepository;
 	@Autowired
 	AlbumRepository albumRepository;
-	@Autowired
-	VendorRepository vendorRepository;
 	@Autowired
 	MemberRepository userRepository;
 	@Autowired
@@ -45,13 +42,9 @@ public class ProductController {
 		return products;
 	}
 	
-	@GetMapping("/vendor")
-	public ArrayList<Vendor> getVendors(){
-		System.out.println("Getting vendors ");
-		return (ArrayList<Vendor>) vendorRepository.findAll();
-	}
-	
+
 	@GetMapping("/users")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ArrayList<Member> getUsers(){
 		System.out.println("Getting Users ");
 		return (ArrayList<Member>) userRepository.findAll();

@@ -3,12 +3,13 @@ package hipshop.security;
 import static hipshop.security.Constants.LOGIN_URL;
 import static hipshop.security.Constants.HEADER_AUTHORIZACION_KEY;
 
-
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,8 +19,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration //Configuración básica para SpringSecurity
+
+
+@Configuration 
 @EnableWebSecurity
+@EnableAutoConfiguration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
@@ -43,13 +48,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		 * 5. Se indica que el resto de URLs esten securizadas
 		 */
 		httpSecurity
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() //Esta línea hace que no se generen cookies.
-			.cors().and() 
-			.csrf().disable()
-			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll().and() 
-			.authorizeRequests().antMatchers(HttpMethod.GET, "/users/").permitAll().and() 
-			.authorizeRequests().antMatchers(HttpMethod.POST, "/users/").permitAll()
-			.anyRequest().authenticated().and() //Permite habilitar funciones y rutas si estás loggeado o no. Autenticados
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()// esta seccion hace q no genere cookies las desactiva
+			.cors().and()  // configuracion el cors por defecto
+			.csrf().disable()  // desactivar el csrf xq no hicimos el frontend en java 
+			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll().and()
+			.authorizeRequests().antMatchers(HttpMethod.POST, "/user").permitAll().and()
+			.authorizeRequests().antMatchers(HttpMethod.GET, "/user").permitAll()
+			//.authorizeRequests().antMatchers(HttpMethod.POST, "/users/").hasAuthority("ADMIN")
+			.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()));
 	}

@@ -43,14 +43,14 @@ public class Product {
 	private ProductType product;
 	@ManyToOne
 	@JsonBackReference
-	private Vendor vendor;
+	private Member vendor;
 
 
 	public Product() {
 
 	}
 
-	public Product(ProductType product, Vendor vendor) {
+	public Product(ProductType product, Member vendor) {
 		this.product = product;
 		this.vendor = vendor;
 	}
@@ -71,11 +71,11 @@ public class Product {
 		this.product = product;
 	}
 
-	public Vendor getVendor() {
+	public Member getVendor() {
 		return vendor;
 	}
 
-	public void setVendor(Vendor vendor) {
+	public void setVendor(Member vendor) {
 		this.vendor = vendor;
 	}
 

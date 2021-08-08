@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,7 +44,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Member credenciales = new ObjectMapper().readValue(request.getInputStream(), Member.class);
 
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-					credenciales.getEmail(), credenciales.getPassword(), new ArrayList<>()));
+					credenciales.getUsername(), credenciales.getPassword(), new ArrayList<>()));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -55,6 +56,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		String token = Jwts.builder().setIssuedAt(new Date())
 				.setSubject(((User)auth.getPrincipal()).getUsername())
+				.claim("role", auth.getAuthorities().iterator().next().getAuthority())
 				.setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SUPER_SECRET_KEY).compact();
 		//response.getWriter().write(TOKEN_BEARER_PREFIX + "" + token);

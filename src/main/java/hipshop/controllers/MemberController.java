@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +23,43 @@ import hipshop.services.MemberService;
 @RequestMapping("/member")
 public class MemberController {
 
-	@Autowired
-	MemberService memberService;
+	/*
+	 * Dependency injection by constructor
+	 */
 	
+	private MemberService memberService;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	public MemberController(MemberService memberService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.memberService = memberService;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+	
+	/*
+	 * Method to get the list of all users available
+	 * This list is restricted just to ADMIN role 
+	 * getUsers()
+	 */
+	
+	@GetMapping("/all")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public ArrayList<Member> getAllMembers(){
+		return memberService.getMembers();
+	}
+	
+	/*
+	 * Method to get all vendors available 
+	 */
 	@GetMapping
 	public ArrayList<Member> getUsers(){
 		return memberService.getMembers();
 	}
+	
+	/*
+	 * Method for saving new members, by default all of them will have
+	 *  the role of USER by default and will hashed the password automatically
+	 *  saveUser(Member member)
+	 */
+	
 	@PostMapping
 	public Member saveMember(@RequestBody Member user) {
 			return memberService.saveMember(user);
